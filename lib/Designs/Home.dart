@@ -1,3 +1,4 @@
+import 'package:blocapis/Designs/DetailScreen.dart';
 import 'package:blocapis/Repository/user_repository.dart';
 import 'package:blocapis/Models/user%20model.dart';
 import 'package:blocapis/blocs/app%20states.dart';
@@ -22,7 +23,7 @@ class _HomeState extends State<Home> {
       )..add(LoadUserEvent()),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.teal,
           title: Text("The Bloc App",style:TextStyle(color: Colors.white),),
           centerTitle: true,
         ),
@@ -37,16 +38,21 @@ class _HomeState extends State<Home> {
             return ListView.builder(
               itemCount: userList.length,
               itemBuilder: (context, index) {
-                return Card(
-                  color: const Color.fromARGB(255, 129, 232, 133),
-                  elevation: 5,
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 40,
-                      backgroundImage: NetworkImage(userList[index].avatar),
+                return InkWell(
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Detailscreen(e:userList[index]),));
+                  },
+                  child: Card(
+                    color: Colors.teal[200],
+                    elevation: 5,
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        radius: 40,
+                        backgroundImage: NetworkImage(userList[index].avatar),
+                      ),
+                      title: Text(userList[index].firstName),
+                      subtitle: Text(userList[index].lastName),
                     ),
-                    title: Text(userList[index].firstName),
-                    subtitle: Text(userList[index].lastName),
                   ),
                 );
               },

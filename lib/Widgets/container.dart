@@ -10,6 +10,6 @@ class Container extends StatefulWidget {
 class _ContainerState extends State<Container> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold();
   }
 }
